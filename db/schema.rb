@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 2020_07_03_195337) do
     t.string "genre"
     t.integer "pages"
     t.text "description"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -42,5 +44,6 @@ ActiveRecord::Schema.define(version: 2020_07_03_195337) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "books", "users"
   add_foreign_key "groups", "users"
 end
