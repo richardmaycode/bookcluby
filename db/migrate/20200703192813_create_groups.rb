@@ -4,6 +4,9 @@ class CreateGroups < ActiveRecord::Migration[6.0]
       t.string :name
       t.text :description
       t.date :established
+      t.integer :books_per_month
+      t.integer :minimum_planned_months
+      t.integer :maximum_voting_sessions
 
       t.belongs_to :user, null: false, foreign_key: true
       t.timestamps
