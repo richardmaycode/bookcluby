@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   # associations
   belongs_to :user
+  has_many :recommendations
   # validations
   validates :title, presence: true
   validates :author, presence: true

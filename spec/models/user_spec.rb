@@ -5,6 +5,7 @@ RSpec.describe User, type: :model do
 
   describe "associations" do
     it { should have_many(:books) } 
+    it { should have_many(:recommendations) }
   end
   
   describe "validations" do
