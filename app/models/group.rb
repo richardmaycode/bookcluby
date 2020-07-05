@@ -4,6 +4,8 @@ class Group < ApplicationRecord
   has_many :recommendations
   has_many :memberships
   has_many :members, through: :memberships, source: :user
+  has_many :reads
+  
   # validations
   validates :name, presence: true, uniqueness: true
   validates :established, presence: true
@@ -17,6 +19,7 @@ class Group < ApplicationRecord
 
   #callbacks
   before_validation :set_invite_code, on: :create 
+  
   #methods
   def set_invite_code
     code = Faker::Hipster.word + Faker::Number.number(digits: 2).to_s
