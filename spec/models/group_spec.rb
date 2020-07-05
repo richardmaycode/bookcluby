@@ -6,6 +6,8 @@ RSpec.describe Group, type: :model do
   describe "associations" do
     it { should belong_to(:user) } 
     it { should have_many(:recommendations) } 
+    it { should have_many(:memberships) } 
+    it { should have_many(:members).through(:memberships).source(:user) }
   end
 
   describe 'validations' do

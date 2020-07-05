@@ -2,6 +2,8 @@ class Group < ApplicationRecord
   # associations
   belongs_to :user
   has_many :recommendations
+  has_many :memberships
+  has_many :members, through: :memberships, source: :user
   # validations
   validates :name, presence: true, uniqueness: true
   validates :established, presence: true
