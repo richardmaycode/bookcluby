@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_05_012302) do
+ActiveRecord::Schema.define(version: 2020_07_05_020201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,20 @@ ActiveRecord::Schema.define(version: 2020_07_05_012302) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "voting_sessions", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.integer "status"
+    t.integer "maximum_books_per_person"
+    t.integer "recommendation_lead_days"
+    t.integer "maximum_books_to_plan"
+    t.date "recommedation_deadline"
+    t.date "voting_date"
+    t.date "completion_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_voting_sessions_on_group_id"
+  end
+
   add_foreign_key "books", "users"
   add_foreign_key "groups", "users"
   add_foreign_key "memberships", "groups"
@@ -77,4 +91,5 @@ ActiveRecord::Schema.define(version: 2020_07_05_012302) do
   add_foreign_key "recommendations", "books"
   add_foreign_key "recommendations", "groups"
   add_foreign_key "recommendations", "users"
+  add_foreign_key "voting_sessions", "groups"
 end
