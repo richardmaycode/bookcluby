@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_05_020201) do
+ActiveRecord::Schema.define(version: 2020_07_05_024623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(version: 2020_07_05_020201) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "voting_session_recommendations", force: :cascade do |t|
+    t.bigint "voting_session_id"
+    t.bigint "recommendation_id"
+    t.string "outcome"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recommendation_id"], name: "index_voting_session_recommendations_on_recommendation_id"
+    t.index ["voting_session_id"], name: "index_voting_session_recommendations_on_voting_session_id"
   end
 
   create_table "voting_sessions", force: :cascade do |t|

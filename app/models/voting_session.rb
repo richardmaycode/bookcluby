@@ -1,7 +1,10 @@
 class VotingSession < ApplicationRecord
   # associations
   belongs_to :group
-
+  has_many :voting_session_recommendations
+  has_many :recommendations, through: :voting_session_recommendations
+  has_many :books, through: :recommendations
+  has_many :recommenders, through: :recommendations, source: :user
   # validations
   validates :status, presence: true
   validates :maximum_books_per_person, presence: true

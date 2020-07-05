@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe VotingSession, type: :model do
   describe "relationships" do
     it { should belong_to(:group) }
+    it { should have_many(:voting_session_recommendations) }
+    it { should have_many(:recommendations).through(:voting_session_recommendations) }
+    it { should have_many(:books).through(:recommendations) } 
+    it { should have_many(:recommenders).through(:recommendations).source(:user) }
   end
   
   describe "validations" do
