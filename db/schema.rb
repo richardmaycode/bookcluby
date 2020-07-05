@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 2020_07_05_024623) do
     t.integer "maximum_books_per_person"
     t.integer "recommendation_lead_days"
     t.integer "maximum_books_to_plan"
-    t.date "recommedation_deadline"
+    t.date "recommendation_deadline"
     t.date "voting_date"
     t.date "completion_date"
     t.datetime "created_at", precision: 6, null: false

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :voting_session_recommendation do
-    belongs_to { "" }
-    belongs_to { "" }
+    recommendation
+    voting_session
     outcome { "MyString" }
   end
 end
