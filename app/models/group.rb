@@ -10,7 +10,16 @@ class Group < ApplicationRecord
   validates :books_per_month, presence: true
   validates :minimum_planned_months, presence: true
   validates :maximum_voting_sessions, presence: true
+  validates :invite_code, presence: true
   validates_numericality_of :books_per_month, :allow_nil => false, :greater_than => 0, :less_than => 5
   validates_numericality_of :minimum_planned_months, :allow_nil => false, :greater_than => 0, :less_than => 13
   validates_numericality_of :maximum_voting_sessions, :allow_nil => false, :greater_than => 0, :less_than => 100    
+
+  #callbacks
+  before_validation :set_invite_code, on: :create 
+  #methods
+  def set_invite_code
+    code = Faker::Hipster.word + Faker::Number.number(digits: 2).to_s
+    self.invite_code = code
+  end
 end

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
+  subject(:book) { create(:book) } 
+  
   describe "associations" do
     it { should belong_to(:user) } 
     it { should have_many(:recommendations) } 

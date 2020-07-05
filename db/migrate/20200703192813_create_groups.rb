@@ -7,6 +7,7 @@ class CreateGroups < ActiveRecord::Migration[6.0]
       t.integer :books_per_month
       t.integer :minimum_planned_months
       t.integer :maximum_voting_sessions
+      t.string :invite_code
 
       t.belongs_to :user, null: false, foreign_key: true
       t.timestamps

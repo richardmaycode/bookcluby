@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_07_05_012302) do
     t.integer "books_per_month"
     t.integer "minimum_planned_months"
     t.integer "maximum_voting_sessions"
+    t.string "invite_code"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
