@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_05_024623) do
+ActiveRecord::Schema.define(version: 2020_07_05_032757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 2020_07_05_024623) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_memberships_on_group_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "reads", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "recommendation_id", null: false
+    t.date "scheduled"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_reads_on_group_id"
+    t.index ["recommendation_id"], name: "index_reads_on_recommendation_id"
   end
 
   create_table "recommendations", force: :cascade do |t|
@@ -98,6 +108,8 @@ ActiveRecord::Schema.define(version: 2020_07_05_024623) do
   add_foreign_key "groups", "users"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
+  add_foreign_key "reads", "groups"
+  add_foreign_key "reads", "recommendations"
   add_foreign_key "recommendations", "books"
   add_foreign_key "recommendations", "groups"
   add_foreign_key "recommendations", "users"
