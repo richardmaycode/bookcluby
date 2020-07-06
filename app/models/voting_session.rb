@@ -5,6 +5,7 @@ class VotingSession < ApplicationRecord
   has_many :recommendations, through: :voting_session_recommendations
   has_many :books, through: :recommendations
   has_many :recommenders, through: :recommendations, source: :user
+  has_many :votes
   # validations
   validates :status, presence: true
   validates :maximum_books_per_person, presence: true

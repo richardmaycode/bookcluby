@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_05_032757) do
+ActiveRecord::Schema.define(version: 2020_07_06_193557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,16 @@ ActiveRecord::Schema.define(version: 2020_07_05_032757) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "voting_session_id", null: false
+    t.bigint "voting_session_recommendation_id", null: false
+    t.boolean "outcome"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["voting_session_id"], name: "index_votes_on_voting_session_id"
+    t.index ["voting_session_recommendation_id"], name: "index_votes_on_voting_session_recommendation_id"
+  end
+
   create_table "voting_session_recommendations", force: :cascade do |t|
     t.bigint "voting_session_id"
     t.bigint "recommendation_id"
@@ -113,5 +123,7 @@ ActiveRecord::Schema.define(version: 2020_07_05_032757) do
   add_foreign_key "recommendations", "books"
   add_foreign_key "recommendations", "groups"
   add_foreign_key "recommendations", "users"
+  add_foreign_key "votes", "voting_session_recommendations"
+  add_foreign_key "votes", "voting_sessions"
   add_foreign_key "voting_sessions", "groups"
 end

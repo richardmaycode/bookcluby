@@ -7,6 +7,7 @@ RSpec.describe VotingSession, type: :model do
     it { should have_many(:recommendations).through(:voting_session_recommendations) }
     it { should have_many(:books).through(:recommendations) } 
     it { should have_many(:recommenders).through(:recommendations).source(:user) }
+    it { should have_many(:votes) }
   end
   
   describe "validations" do
