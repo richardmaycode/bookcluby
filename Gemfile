@@ -11,6 +11,7 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem "view_component", "~> 2.13"
+gem 'haml'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -29,6 +30,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', require: false
   gem 'bullet'
+  gem "haml-rails", "~> 2.0"
 end
 
 group :test do
