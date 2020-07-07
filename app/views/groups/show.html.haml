@@ -1,2 +1,18 @@
-.container
-  #h1.h1= @group.name
+.header
+  .container
+    %h1= @group.name
+    %hr
+  .section
+    .container
+      %h2 Current Book
+      = render 'read'
+  .section
+    .container
+      %h2 Books and Details
+      %ul.nav-list
+        %li.nav-list-item.active Upcoming Books
+        %li.nav-list-item Past Books
+        %li.nav-list-item Recommendations
+        %li.nav-list-item Members
+      .reads_container
+        = render 'reads'

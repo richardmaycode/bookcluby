@@ -14,8 +14,118 @@
  *= require_self
  */
 
+*, *::before, *::after {
+  box-sizing: border-box;
+} 
+
+body {
+  background-color: #F6F5F0;
+  font-family: sans-serif;
+  margin: 0;
+}
+
 .container {
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1100px;
+}
+.header {
+  margin: 1rem 0;
+}
+
+.section {
+  margin: 2rem;
+}
+
+.nav-list {
+  list-style: none;
+  width: 100%;
+}
+.nav-list-item {
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 0 8px;
+}
+
+.nav-list-item.active {
+  border-bottom: 2px solid  #FF4500;
+  font-weight: bold;
+}
+
+.reads_container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 24px auto;
+}
+
+.read_block {
+  display: flex;
+  width: 33.3%;
+  min-height: 175px;
+}
+
+.cal_block {
+  padding: 15px 30px;
+  margin: 15px;
+  background-color: #fff;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 95px;
+  width: 95px;
+  align-self: center;
+}
+
+.day {
+  font-size: 2rem;
+  padding-top: 5px;
+}
+
+.month {
+  font-size: 1.25rem;
+  color: #FF4500;
+  padding-top: 5px;
+}
+
+.book_block {
+  padding: 8px 8px;
+  margin: 16px 4px;
+  align-self: center;
+}
+
+.title {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.author {
+  font-style: italic;
+  font-weight: 300;
+  color: #6A6A68;
+  margin: 8px 0;
+}
+
+.icon, .text { 
+  display: inline-block;
+}
+
+.current_read_block {
+  display: flex;
+  width: auto;
+  justify-content: center;
+}
+
+.book_cover {
+  align-self: center;
+  width: 25%;
+}
+.book_cover img {
+  border-radius: 15px;
+  margin: 0 auto;
+  max-width: 200px;
+  max-height: 400px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.book_details {
+  width: 75%;
 }
