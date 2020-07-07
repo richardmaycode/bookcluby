@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: w%[show edit update destroy]
+  before_action :set_group, only: %w[show edit update destroy]
 
   def index
     @groups = Group.all
@@ -46,7 +46,7 @@ class GroupsController < ApplicationController
   
   private
   def set_group
-    @group = Group.find(parmas[:id])
+    @group = Group.find(params[:id])
   end
 
   def group_params
