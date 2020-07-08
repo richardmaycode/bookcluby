@@ -31,6 +31,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'bullet'
   gem "haml-rails", "~> 2.0"
+  gem 'annotate'
 end
 
 group :test do

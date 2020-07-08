@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: voting_sessions
+#
+#  id                       :bigint           not null, primary key
+#  completion_date          :date
+#  maximum_books_per_person :integer
+#  maximum_books_to_plan    :integer
+#  recommendation_deadline  :date
+#  recommendation_lead_days :integer
+#  status                   :integer
+#  voting_date              :date
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  group_id                 :bigint           not null
+#
+# Indexes
+#
+#  index_voting_sessions_on_group_id  (group_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (group_id => groups.id)
+#
 require 'rails_helper'
 
 RSpec.describe VotingSession, type: :model do
