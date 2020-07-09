@@ -11,23 +11,23 @@ module Books
 
       # response = RestClient.get query_url
       response = HTTParty.get(query_url)
-      response_clean = JSON.parse(response.body)
+      response_clean = JSON.parse(response.body, symbolize_names: true)
 
       results_array = []
-      if response_clean['num_found'].to_i > 0
+      if response_clean[:docs]&.size > 0
         count = 0
-        response_clean['docs'].each do |r|
+        response_clean[:docs].each do |r|
           break if count >=6
           book_hash = {}
-          if r['isbn'].nil? or r['author_name'].nil?
+          if r[:isbn].nil? or r[:author_name].nil?
             return
           else
-            book_hash[:isbn] = r['isbn'][0]
-            book_hash[:title] = r['title']
-            book_hash[:author] = r['author_name'][0]
-            book_hash[:cover_id] = r['cover_i']
+            book_hash[:isbn] = r[:isbn][0]
+            book_hash[:title] = r[:title]
+            book_hash[:author] = r[:author_name][0]
+            book_hash[:cover_id] = r[:cover_i]
+            results_array << book_hash
           end
-          results_array << book_hash unless book_hash.empty?
           count += 1
           
         end

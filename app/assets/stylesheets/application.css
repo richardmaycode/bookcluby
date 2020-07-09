@@ -59,6 +59,7 @@ body {
 }
 
 .read_block {
+  /* flex: 1 0 300px; */
   display: flex;
   width: 33.3%;
   min-height: 175px;
