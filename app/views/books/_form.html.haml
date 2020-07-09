@@ -1,0 +1,9 @@
+=form_with(model: @book) do |f|
+  =f.text_field :title
+  %br/
+  =f.text_field :author
+  %br/
+  =f.number_field :pages
+  =f.hidden_field :book_cover
+  =f.hidden_field :isbn
+  =f.submit "Submit", disable_with: 'Submiting...'

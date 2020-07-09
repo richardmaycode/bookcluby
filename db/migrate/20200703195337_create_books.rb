@@ -4,6 +4,8 @@ class CreateBooks < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :author
       t.string :genre
+      t.string :isbn
+      t.string :book_cover
       t.integer :pages
       t.text :description
 

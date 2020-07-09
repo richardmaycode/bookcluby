@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2020_07_06_193557) do
     t.string "title"
     t.string "author"
     t.string "genre"
+    t.string "isbn"
+    t.string "book_cover"
     t.integer "pages"
     t.text "description"
     t.bigint "user_id", null: false

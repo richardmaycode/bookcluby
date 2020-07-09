@@ -4,8 +4,10 @@
 #
 #  id          :bigint           not null, primary key
 #  author      :string
+#  book_cover  :string
 #  description :text
 #  genre       :string
+#  isbn        :string
 #  pages       :integer
 #  title       :string
 #  created_at  :datetime         not null

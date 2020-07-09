@@ -1,13 +1,14 @@
 .container
   %h1 Results for #{@q}
   = link_to('search again', [:new, :book_search])
-%ul
   -if @result.nil? 
     %p no results
   -else
+    .row
     -@result.each do |r|
-      %li= r[:title]
-      %ul
-        %li= 'author: ' + r[:author]
-        %li= 'ISBN: ' + r[:isbn]
-      %img{src: "http://covers.openlibrary.org/b/id/#{r[:cover_id]}-M.jpg"}
+      .col
+        %h2= r[:title]
+        %p= 'author: ' + r[:author]
+        %img{src: "http://covers.openlibrary.org/b/id/#{r[:cover_id]}-M.jpg"}
+        =link_to('Select', new_book_path(book: r[:isbn]))
+
