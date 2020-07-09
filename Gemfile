@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem "view_component", "~> 2.13"
 gem 'haml'
+gem 'rest-client', '~> 1.8'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 

@@ -1,0 +1,4 @@
+= form_with(url: book_searches_path) do
+  .container
+    = text_field_tag :q, nil, { placeholder: 'What sounds good?' , class: 'search-big' }
+  = submit_tag('Search', style: 'opacity: 0')
