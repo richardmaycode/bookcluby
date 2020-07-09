@@ -1,5 +1,3 @@
-require 'rest-client'
-
 module Books
   class Search < ApplicationService
     def initialize(search)
@@ -11,7 +9,8 @@ module Books
       search_param = @search.parameterize(separator: '+')
       query_url = base_url + search_param
 
-      response = RestClient.get query_url
+      # response = RestClient.get query_url
+      response = HTTParty.get(query_url)
       response_clean = JSON.parse(response.body)
 
       results_array = []
