@@ -1,9 +1,26 @@
-=form_with(model: @book) do |f|
-  =f.text_field :title
-  %br/
-  =f.text_field :author
-  %br/
-  =f.number_field :pages
+=form_with(model: @book, class: 'form') do |f|
   =f.hidden_field :book_cover
   =f.hidden_field :isbn
+  =f.hidden_field :user_id, value: User.first.id
+  =f.label :title, "Title"
+  =f.text_field :title
+  %br/
+  =f.label :author, "Author"
+  =f.text_field :author
+  %br/
+  =f.label :pages, "Number of Pages"
+  =f.number_field :pages
+  %br/
+  =f.label :genre, "Genre"
+  =f.text_field :genre
+  %br/
+  =f.label :description, "Description"
+  =f.text_area :description
+  %br/
+  %label Recommend to Group(s)...
+  %br/
+  -@user.groups.each do |g|
+    = f.check_box :group_ids, {multiple: true}, g.id, nil
+    = g.name
+  %br/
   =f.submit "Submit", disable_with: 'Submiting...'

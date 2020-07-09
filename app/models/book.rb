@@ -23,6 +23,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Book < ApplicationRecord
+  attr_accessor :group_ids
   # associations
   belongs_to :user
   has_many :recommendations

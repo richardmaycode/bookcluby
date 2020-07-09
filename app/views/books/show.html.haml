@@ -1,2 +1,7 @@
 %h1 Books#show
 %p Find me in app/views/books/show.html.haml
+
+%h2 Recommended to:
+%ul
+  -@book.recommendations.each do |r|
+    %li=r.group.name
