@@ -1,7 +1,7 @@
 .container
   %h1 Results for #{@q}
   = link_to('search again', [:new, :book_search])
-  -if @result.nil? 
+  -if @result.nil?
     %p no results
   -else
     .row

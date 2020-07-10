@@ -5,34 +5,35 @@ module Books
     end
 
     def call
-      base_url = 'http://openlibrary.org/search.json?title='
+      books = book_search
+      return unless books&.dig(:docs).present?
+
+      process_results(books)
+    end
+
+    private
+
+    def book_search
       search_param = @search.parameterize(separator: '+')
-      query_url = base_url + search_param
+      query_url = "http://openlibrary.org/search.json?title=#{search_param}"
 
-      # response = RestClient.get query_url
       response = HTTParty.get(query_url)
-      response_clean = JSON.parse(response.body, symbolize_names: true)
+      JSON.parse(response.body, symbolize_names: true)
+    end
 
-      results_array = []
-      if response_clean[:docs]&.size > 0
-        count = 0
-        response_clean[:docs].each do |r|
-          break if count >=6
-          book_hash = {}
-          if r[:isbn].nil? or r[:author_name].nil?
-            return
-          else
-            book_hash[:isbn] = r[:isbn][0]
-            book_hash[:title] = r[:title]
-            book_hash[:author] = r[:author_name][0]
-            book_hash[:cover_id] = r[:cover_i]
-            results_array << book_hash
-          end
-          count += 1
-          
-        end
+    def process_results(books)
+      books_array = []
+      books[:docs][0, 5].each do |book|
+        book_hash = {}
+        next unless book[:isbn].present? && book[:author_name].present?
+
+        book_hash[:isbn] = book[:isbn]&.first
+        book_hash[:title] = book[:title]
+        book_hash[:author] = book[:author_name]&.join(', ')
+        book_hash[:cover_id] = book[:cover_i]
+        books_array << book_hash
       end
-      return results_array
+      books_array
     end
   end
 end
