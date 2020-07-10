@@ -40,7 +40,7 @@ class BooksController < ApplicationController
 
   private
   def set_book
-    @book = Book.includes(membership: [:group]).find(params[:id])
+    @book = Book.find(params[:id])
   end
   def book_params
     params.require(:book).permit(:title, :author, :description, :pages, :genre, :user_id, :book_cover, :isbn, group_ids: [])
