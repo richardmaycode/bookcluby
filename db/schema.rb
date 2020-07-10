@@ -53,9 +53,10 @@ ActiveRecord::Schema.define(version: 2020_07_06_193557) do
   end
 
   create_table "reads", force: :cascade do |t|
+    t.date "scheduled"
+    t.boolean "is_current", default: false
     t.bigint "group_id", null: false
     t.bigint "recommendation_id", null: false
-    t.date "scheduled"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_reads_on_group_id"

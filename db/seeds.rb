@@ -6,9 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create(name: 'Ricard Wise', email: Faker::Internet.email)
+User.create(name: 'Sarah Wise', email: Faker::Internet.email)
+User.create(name: 'Allen Keen', email: Faker::Internet.email)
+User.create(name: 'Alina Keen', email: Faker::Internet.email)
 Group.create(name: "Cari's Group", established: Time.now, description: "This is a test group", books_per_month: 1, minimum_planned_months: 2, maximum_voting_sessions: 2, user: User.first)
 Group.create(name: "Testing Group", established: Time.now, description: "This is a test group", books_per_month: 1, minimum_planned_months: 2, maximum_voting_sessions: 2, user: User.first)
 Group.create(name: "Special Group", established: Time.now, description: "This is a test group", books_per_month: 1, minimum_planned_months: 2, maximum_voting_sessions: 2, user: User.first)
-Membership.create(user: User.first, group: Group.first)
+
+User.all.each do |user|
+  Membership.create(user_id: user.id, group: Group.first)
+end
 Membership.create(user: User.first, group: Group.find(2))
 Membership.create(user: User.first, group: Group.last)

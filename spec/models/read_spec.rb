@@ -3,6 +3,7 @@
 # Table name: reads
 #
 #  id                :bigint           not null, primary key
+#  is_current        :boolean          default(FALSE)
 #  scheduled         :date
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
