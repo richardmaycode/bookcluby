@@ -1,0 +1,14 @@
+=form_with(model: @voting_session, url: [@group, @voting_session], class: 'form') do |f|
+  .form-element
+    =f.label :maximum_books_per_person, 'Books Per Person'
+    =f.number_field :maximum_books_per_person, class: 'form-input'
+  .form-element
+    =f.label :voting_date
+    =f.date_field :voting_date
+  .form-element
+    =f.label 'How do you want to handle existing recommendations'
+  .form-element
+    =f.radio_button(:import, 'all')
+    =f.label(:import_all, 'Add All' )
+    =f.radio_button(:import, 'manual')
+    =f.label(:import_manual, 'Select Manually')

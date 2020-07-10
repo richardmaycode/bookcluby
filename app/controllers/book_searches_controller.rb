@@ -1,6 +1,5 @@
 class BookSearchesController < ApplicationController
   def index
-    
     @q = params[:q]
     @result = Books::Search.call(@q)
   end

@@ -29,6 +29,7 @@ class Group < ApplicationRecord
   has_many :memberships
   has_many :members, through: :memberships, source: :user
   has_many :reads
+  has_many :voting_sessions
   
   # validations
   validates :name, presence: true, uniqueness: true

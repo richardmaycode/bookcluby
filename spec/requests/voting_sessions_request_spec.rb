@@ -1,38 +1,52 @@
 require 'rails_helper'
 
-RSpec.describe "Books", type: :request do
-  let(:book) { create(:book) }
-  describe "GET /books" do
+RSpec.describe "VotingSessions", type: :request do
+
+  describe "GET /index" do
     it "returns http success" do
-      get "/books"
+      get "/voting_sessions/index"
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /book/:id" do
+  describe "GET /show" do
     it "returns http success" do
-      get "/books/#{book.id}"
+      get "/voting_sessions/show"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /new" do
     it "returns http success" do
-      get "/books/#{book.id}"
+      get "/voting_sessions/new"
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET /create" do
+    it "returns http success" do
+      get "/voting_sessions/create"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /edit" do
     it "returns http success" do
-      get "/books/#{book.id}"
+      get "/voting_sessions/edit"
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET /update" do
+    it "returns http success" do
+      get "/voting_sessions/update"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /destroy" do
     it "returns http success" do
-      get "/books/#{book.id}"
+      get "/voting_sessions/destroy"
       expect(response).to have_http_status(:success)
     end
   end

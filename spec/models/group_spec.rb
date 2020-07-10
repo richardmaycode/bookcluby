@@ -33,6 +33,7 @@ RSpec.describe Group, type: :model do
     it { should have_many(:memberships) } 
     it { should have_many(:members).through(:memberships).source(:user) }
     it { should have_many(:reads) }
+    it { should have_many(:voting_sessions) }
   end
 
   describe 'validations' do

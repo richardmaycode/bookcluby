@@ -36,11 +36,19 @@
 # rubocop:enable Layout/LineLength
 
 Rails.application.routes.draw do
+  get 'voting_sessions/index'
+  get 'voting_sessions/show'
+  get 'voting_sessions/new'
+  get 'voting_sessions/create'
+  get 'voting_sessions/edit'
+  get 'voting_sessions/update'
+  get 'voting_sessions/destroy'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :book_searches, only: %w[index new create]
   resources :books
   resources :groups do
     resources :recommendations, only: %w[index]
     resources :reads, only: %w[index show]
+    resources :voting_sessions
   end
 end

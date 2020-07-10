@@ -23,6 +23,7 @@
 #  fk_rails_...  (group_id => groups.id)
 #
 class VotingSession < ApplicationRecord
+  attr_accessor :import
   # associations
   belongs_to :group
   has_many :voting_session_recommendations
