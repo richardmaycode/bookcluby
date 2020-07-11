@@ -44,6 +44,7 @@ class Group < ApplicationRecord
 
   #callbacks
   before_validation :set_invite_code, on: :create 
+  after_save :set_default_admin
   
   #methods
   def set_invite_code
@@ -61,5 +62,10 @@ class Group < ApplicationRecord
     return true if user.memberships.where(role: 'admin', group_id: self.id)
       
     false
+  end
+
+  def set_default_admin
+    return if self.user.memberships.exists?(group_id: self.id, role: 'admin')
+    Membership.create(group_id: self.id, user_id: self.user_id, role: 'admin')
   end
 end

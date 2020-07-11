@@ -80,4 +80,11 @@ RSpec.describe Group, type: :model do
       expect(group.is_admin?(user)).to eq false
     end
   end
+  describe "#set_default_admin" do
+    it 'assigns creator as an admin member' do
+      new_group = create(:group)
+      new_group.set_default_admin
+      expect(new_group.user).to eq new_group.memberships.last.user
+    end
+  end
 end
