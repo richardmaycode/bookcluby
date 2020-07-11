@@ -3,6 +3,7 @@
 # Table name: memberships
 #
 #  id         :bigint           not null, primary key
+#  role       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  group_id   :bigint           not null
@@ -20,7 +21,12 @@
 #
 FactoryBot.define do
   factory :membership do
+    role { "member" }
     group
     user
+
+    factory :admin_membership do
+      role { "admin" }
+    end
   end
 end

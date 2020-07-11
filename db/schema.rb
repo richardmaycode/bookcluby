@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_07_06_193557) do
   end
 
   create_table "memberships", force: :cascade do |t|
+    t.string "role"
     t.bigint "group_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

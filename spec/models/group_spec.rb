@@ -59,4 +59,25 @@ RSpec.describe Group, type: :model do
       expect(group.invite_code).not_to eq old_code  
     end
   end
+
+  describe "#is_member" do
+    it "returns true if user is a group member" do
+      membership = create(:membership)
+      expect(membership.group.is_member?(membership.user)).to eq true
+    end
+    it 'returns false if user is not a group member' do
+      user = create(:user)
+      expect(group.is_member?(user)).to eq false
+    end
+  end
+  describe "#is_admin" do
+    it 'returns true if user is admin member' do
+      membership = create(:admin_membership)
+      expect(membership.group.is_admin?(membership.user)).to eq true
+    end
+    it 'returns false if user is not admin member' do
+      user = create(:user)
+      expect(group.is_admin?(user)).to eq false
+    end
+  end
 end

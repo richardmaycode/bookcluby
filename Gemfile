@@ -15,6 +15,7 @@ gem 'haml'
 gem 'rest-client', '~> 1.8'
 gem 'httparty'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem "action_policy"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

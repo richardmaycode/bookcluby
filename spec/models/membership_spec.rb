@@ -3,6 +3,7 @@
 # Table name: memberships
 #
 #  id         :bigint           not null, primary key
+#  role       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  group_id   :bigint           not null
@@ -24,5 +25,9 @@ RSpec.describe Membership, type: :model do
   describe "associations" do
     it { should belong_to(:group) }
     it { should belong_to(:user) } 
+  end
+
+  describe "validations" do
+    it { should validate_presence_of(:role) }
   end
 end

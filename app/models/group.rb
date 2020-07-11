@@ -50,4 +50,16 @@ class Group < ApplicationRecord
     code = Faker::Hipster.word + Faker::Number.number(digits: 2).to_s
     self.invite_code = code
   end
+
+  def is_member?(user)
+    user.groups.exists?(self.id)
+  end
+
+  def is_admin?(user)
+    return false unless is_member?(user)
+    
+    return true if user.memberships.where(role: 'admin', group_id: self.id)
+      
+    false
+  end
 end

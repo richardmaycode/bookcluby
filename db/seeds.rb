@@ -14,7 +14,7 @@ Group.create(name: "Testing Group", established: Time.now, description: "This is
 Group.create(name: "Special Group", established: Time.now, description: "This is a test group", books_per_month: 1, minimum_planned_months: 2, maximum_voting_sessions: 2, user: User.first)
 
 User.all.each do |user|
-  Membership.create(user_id: user.id, group: Group.first)
+  Membership.create(user_id: user.id, group: Group.first, role: 'admin')
 end
-Membership.create(user: User.first, group: Group.find(2))
-Membership.create(user: User.first, group: Group.last)
+Membership.create(user: User.first, group: Group.find(2), role: 'admin')
+Membership.create(user: User.first, group: Group.last, role: 'admin')
