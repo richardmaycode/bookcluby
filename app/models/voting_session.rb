@@ -24,6 +24,7 @@
 #
 class VotingSession < ApplicationRecord
   attr_accessor :import
+  enum status: %w[active, pending, complete] 
   # associations
   belongs_to :group
   has_many :voting_session_recommendations

@@ -9,7 +9,7 @@ class CreateVotingSessions < ActiveRecord::Migration[6.0]
       t.date :recommendation_deadline
       t.date :voting_date
       t.date :completion_date
-
+      
       t.timestamps
     end
   end

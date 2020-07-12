@@ -30,7 +30,7 @@ class Group < ApplicationRecord
   has_many :members, through: :memberships, source: :user
   has_many :reads
   has_many :voting_sessions
-  
+
   # validations
   validates :name, presence: true, uniqueness: true
   validates :established, presence: true
@@ -38,34 +38,41 @@ class Group < ApplicationRecord
   validates :minimum_planned_months, presence: true
   validates :maximum_voting_sessions, presence: true
   validates :invite_code, presence: true
-  validates_numericality_of :books_per_month, :allow_nil => false, :greater_than => 0, :less_than => 5
-  validates_numericality_of :minimum_planned_months, :allow_nil => false, :greater_than => 0, :less_than => 13
-  validates_numericality_of :maximum_voting_sessions, :allow_nil => false, :greater_than => 0, :less_than => 100    
+  validates_numericality_of :books_per_month, allow_nil: false, greater_than: 0, less_than: 5
+  validates_numericality_of :minimum_planned_months, allow_nil: false, greater_than: 0, less_than: 13
+  validates_numericality_of :maximum_voting_sessions, allow_nil: false, greater_than: 0, less_than: 100
 
-  #callbacks
-  before_validation :set_invite_code, on: :create 
+  # callbacks
+  before_validation :set_invite_code, on: :create
   after_save :set_default_admin
-  
-  #methods
+
+  # methods
   def set_invite_code
     code = Faker::Hipster.word + Faker::Number.number(digits: 2).to_s
     self.invite_code = code
   end
 
-  def is_member?(user)
-    user.groups.exists?(self.id)
+  def member?(user)
+    user.groups.exists?(id)
   end
 
-  def is_admin?(user)
-    return false unless is_member?(user)
-    
-    return true if user.memberships.where(role: 'admin', group_id: self.id)
-      
+  def admin?(user)
+    return false unless member?(user)
+
+    return true if user.memberships.where(role: 'admin', group_id: id)
+
     false
   end
 
   def set_default_admin
-    return if self.user.memberships.exists?(group_id: self.id, role: 'admin')
-    Membership.create(group_id: self.id, user_id: self.user_id, role: 'admin')
+    return if user.memberships.exists?(group_id: id, role: 'admin')
+
+    Membership.create(group_id: id, user_id: user_id, role: 'admin')
+  end
+
+  def active_voting_session?
+    return false unless voting_sessions.exists?(status: 0)
+
+    true
   end
 end

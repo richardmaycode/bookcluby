@@ -60,24 +60,24 @@ RSpec.describe Group, type: :model do
     end
   end
 
-  describe "#is_member" do
+  describe "#member" do
     it "returns true if user is a group member" do
       membership = create(:membership)
-      expect(membership.group.is_member?(membership.user)).to eq true
+      expect(membership.group.member?(membership.user)).to eq true
     end
     it 'returns false if user is not a group member' do
       user = create(:user)
-      expect(group.is_member?(user)).to eq false
+      expect(group.member?(user)).to eq false
     end
   end
-  describe "#is_admin" do
+  describe "#admin" do
     it 'returns true if user is admin member' do
       membership = create(:admin_membership)
-      expect(membership.group.is_admin?(membership.user)).to eq true
+      expect(membership.group.admin?(membership.user)).to eq true
     end
     it 'returns false if user is not admin member' do
       user = create(:user)
-      expect(group.is_admin?(user)).to eq false
+      expect(group.admin?(user)).to eq false
     end
   end
   describe "#set_default_admin" do
@@ -85,6 +85,16 @@ RSpec.describe Group, type: :model do
       new_group = create(:group)
       new_group.set_default_admin
       expect(new_group.user).to eq new_group.memberships.last.user
+    end
+  end
+  describe '#active_voting_session?' do
+    it 'returns true if there active voting_session' do
+      voting_session = create(:active_voting_session)
+      group_w_active_session = voting_session.group
+      expect(group_w_active_session.active_voting_session?).to eq true
+    end
+    it 'returns false if no active votings_session' do
+      expect(group.active_voting_session?).to eq false
     end
   end
 end
