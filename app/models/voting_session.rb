@@ -24,7 +24,7 @@
 #
 class VotingSession < ApplicationRecord
   attr_accessor :import
-  enum status: %w[active, pending, complete] 
+  enum status: %w[active, hold, complete] 
   # associations
   belongs_to :group
   has_many :voting_session_recommendations
@@ -32,6 +32,12 @@ class VotingSession < ApplicationRecord
   has_many :books, through: :recommendations
   has_many :recommenders, through: :recommendations, source: :user
   has_many :votes
+
+  # scopes
+  scope :active, -> { where(status: 0) }
+  scope :complete -> { where(status: 2) }
+  scope :on_hold -> { where(status: 1) }
+  
   # validations
   validates :status, presence: true
   validates :maximum_books_per_person, presence: true
