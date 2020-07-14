@@ -14,9 +14,8 @@ class VotingSessionsController < ApplicationController
   def create
     @voting_session = @group.voting_sessions.create(voting_session_params)
     if @voting_session.save
-      puts ActiveRecord::Type::Boolean.new.deserialize(params[:import])
       if params[:import] = "true"
-        puts true
+        Recommendation::VotingSessionImport.call(@group)
       end
       redirect_to [@group, @voting_session]
     else
