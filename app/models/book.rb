@@ -24,6 +24,7 @@
 #
 class Book < ApplicationRecord
   attr_accessor :group_ids
+
   # associations
   belongs_to :user
   has_many :recommendations
@@ -33,5 +34,5 @@ class Book < ApplicationRecord
   validates :genre, presence: true
   validates :pages, presence: true
   validates :description, presence: true
-  validates_numericality_of :pages, :allow_nil => false, :greater_than => 49, :less_than => 2001
+  validates_numericality_of :pages, allow_nil: false, greater_than: 49, less_than: 2001
 end

@@ -24,7 +24,8 @@
 #
 class VotingSession < ApplicationRecord
   attr_accessor :import
-  enum status: %w[active, hold, complete] 
+
+  enum status: %w[active hold complete]
   # associations
   belongs_to :group
   has_many :voting_session_recommendations
@@ -35,19 +36,19 @@ class VotingSession < ApplicationRecord
 
   # scopes
   scope :active, -> { where(status: 0) }
-  scope :complete -> { where(status: 2) }
-  scope :on_hold -> { where(status: 1) }
-  
+  scope :complete, -> { where(status: 2) }
+  scope :on_hold, -> { where(status: 1) }
+
   # validations
   validates :status, presence: true
   validates :maximum_books_per_person, presence: true
   validates :recommendation_lead_days, presence: true
   validates :maximum_books_to_plan, presence: true
-  validates :completion_date, presence: true
+  # validates :completion_date, presence: true
   validates :voting_date, presence: true
-  validates :recommendation_deadline, presence: true
+  # validates :recommendation_deadline, presence: true
 
-  validates_numericality_of :maximum_books_per_person, :allow_nil => false, :greater_than => 0, :less_than => 11
-  validates_numericality_of :recommendation_lead_days, :allow_nil => false, :greater_than => 0, :less_than => 11
-  validates_numericality_of :maximum_books_to_plan, :allow_nil => false, :greater_than => 0, :less_than => 13
+  validates_numericality_of :maximum_books_per_person, allow_nil: false, greater_than: 0, less_than: 11
+  validates_numericality_of :recommendation_lead_days, allow_nil: false, greater_than: 0, less_than: 11
+  validates_numericality_of :maximum_books_to_plan, allow_nil: false, greater_than: 0, less_than: 13
 end

@@ -23,7 +23,7 @@ class Membership < ApplicationRecord
   # associations
   belongs_to :group
   belongs_to :user
-  
+
   # validations
   validates :role, presence: true
 end

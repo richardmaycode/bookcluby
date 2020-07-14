@@ -14,8 +14,15 @@ class VotingSessionsController < ApplicationController
   def create
     @voting_session = @group.voting_sessions.create(voting_session_params)
     if @voting_session.save
+      puts ActiveRecord::Type::Boolean.new.deserialize(params[:import])
+      if params[:import] = "true"
+        puts true
+      end
       redirect_to [@group, @voting_session]
     else
+      @voting_session.errors.full_messages.each do |e|
+        puts e
+      end
       render :new
     end
   end
@@ -46,6 +53,6 @@ class VotingSessionsController < ApplicationController
   end
 
   def voting_session_params
-    params.require(:voting_session).permit(:maximum_books_per_person)
+    params.require(:voting_session).permit(:voting_date, :maximum_books_per_person, :maximum_books_to_plan, :recommendation_lead_days, :import, :status)
   end
 end

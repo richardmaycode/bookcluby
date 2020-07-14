@@ -1,2 +1,8 @@
-%h1 VotingSessions#show
-%p Find me in app/views/voting_sessions/show.html.haml
+.container
+  .header
+    %h1 Voting Session for #{@voting_session.group.name}
+.container
+  -if @voting_session.recommendations.any?
+    %ul
+      -@voting_session.recommendations.each do |r|
+        %li= r.book.name

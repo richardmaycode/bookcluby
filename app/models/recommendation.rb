@@ -38,6 +38,7 @@ class Recommendation < ApplicationRecord
   # methods
   def determine_eligibility
     return true unless voting_session_recommendations.count >= group.maximum_voting_sessions
+
     false
   end
 
@@ -46,10 +47,10 @@ class Recommendation < ApplicationRecord
   end
 
   def voting_session_assignment
-    if group.active_voting_session
-      group.voting_sessions.active.each do |avs|
-        voting_session_recommendations.create(voting_session_id: avs.id, reccomendation_id: id)
-      end
+    return unless group.active_voting_session
+
+    group.voting_sessions.active.each do |avs|
+      voting_session_recommendations.create(voting_session_id: avs.id, reccomendation_id: id)
     end
   end
 end
