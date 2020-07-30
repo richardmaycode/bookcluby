@@ -18,3 +18,8 @@ User.all.each do |user|
 end
 Membership.create(user: User.first, group: Group.find(2), role: 'admin')
 Membership.create(user: User.first, group: Group.last, role: 'admin')
+
+15.times do
+  book = Book.create(title: Faker::Book.title, author: Faker::Book.author, genre: 'Fantasy', pages: rand(75..175), description: Faker::Lorem.paragraphs, user_id: User.first.id)
+  Recommendation.create(user_id: book.user_id, group_id: 1, book_id: book.id)
+end

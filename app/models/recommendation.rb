@@ -34,7 +34,8 @@ class Recommendation < ApplicationRecord
   # validations
 
   # callback
-  #  after_save :voting_session_assignment, on: :create
+  after_create :voting_session_assignment
+  
   # methods
   def determine_eligibility
     return true unless voting_session_recommendations.count >= group.maximum_voting_sessions
@@ -47,10 +48,10 @@ class Recommendation < ApplicationRecord
   end
 
   def voting_session_assignment
-    return unless group.active_voting_session
+    return unless group.active_voting_session?
 
     group.voting_sessions.active.each do |avs|
-      voting_session_recommendations.create(voting_session_id: avs.id, reccomendation_id: id)
+      voting_session_recommendations.create(voting_session_id: avs.id, recommendation_id: id)
     end
   end
 end

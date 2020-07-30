@@ -1,4 +1,5 @@
 class VotingSessionsController < ApplicationController
+  before_action :set_user
   before_action :set_group
   before_action :set_voting_session, only: %w[show edit update destroy]
   def index
@@ -15,7 +16,7 @@ class VotingSessionsController < ApplicationController
     @voting_session = @group.voting_sessions.create(voting_session_params)
     if @voting_session.save
       if params[:import] = "true"
-        Recommendation::VotingSessionImport.call(@group)
+        Recommendations::VotingSessionImport.call(@voting_session)
       end
       redirect_to [@group, @voting_session]
     else
@@ -42,13 +43,17 @@ class VotingSessionsController < ApplicationController
   end
 
   private
+  
+  def set_user
+    @user = current_user
+  end
 
   def set_group
     @group = Group.find(params[:group_id])
   end
 
   def set_voting_session
-    @voting_session = VotingSession.find(params[:id])
+    @voting_session = VotingSession.includes(recommendations: [:book]).find(params[:id])
   end
 
   def voting_session_params

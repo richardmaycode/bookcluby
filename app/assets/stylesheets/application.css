@@ -20,7 +20,7 @@
 
 body {
   background-color: #F6F5F0;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
 }
 
@@ -169,4 +169,89 @@ body {
 
 .form-input {
   flex-grow: 3
+}
+
+.recommendations_section {
+  display: flex;
+  flex-direction: column;
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.nav {
+  padding: 20px 0;
+}
+
+.navbar__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0.5rem 0;
+  max-width: calc(100vw - 5rem);
+}
+
+.navbar__left, .navbar__right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.navbar__left {
+  left: .04rem;
+}
+
+.navbar__logo {
+  font-size: 2.5rem;
+}
+
+.navbar__back-button {
+  text-decoration: none;
+  background: #c55fe2;
+  padding: 10px 30px;
+  border-radius: 2rem;
+  color: white;
+  position: relative;
+}
+
+.navbar__back-button::before {
+  content: '';
+  width: 1em;
+  height: 1em;
+  position: absolute;
+  left: 0.75em;
+  top: 50%;
+  margin-top: -0.5em;
+  /* background-image: '/Users/richardwise/Documents/RailsProjects/bookcluby/app/assets/images/chevron-left-solid.svg'; */
+}
+
+.button__submit-success {
+  text-decoration: none;
+  background: #00a890;
+  padding: 10px 30px;
+  border-radius: 2rem;
+  color: white;
+}
+
+.button__submit-danger {
+  text-decoration: none;
+  background: #ff4500;
+  padding: 10px 30px;
+  border-radius: 2rem;
+  color: white;
 }

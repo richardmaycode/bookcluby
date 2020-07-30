@@ -1,0 +1,12 @@
+=render(NavigationComponent.new(title: 'BookCluby', left_link: link_to('Voting Session', [@voting_session.group, @voting_session], class: 'navbar__back-button')))
+.container
+  .header
+    %h3 Cast your vote 
+    %h1 #{@book.title}
+    =form_with(model: @vote, class: 'form') do |f|
+      =f.hidden_field :voting_session_id, value: @voting_session.id
+      =f.hidden_field :voting_session_recommendation_id, value: @voting_session_recommendation.id
+      =f.hidden_field :user_id, value: @user.id
+      .form-element
+        =submit_tag('Would Read', class: 'button__submit-success')
+        =submit_tag("Wouldn't Read", class: 'button__submit-danger')

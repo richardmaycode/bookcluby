@@ -17,6 +17,7 @@
 class VotingSessionRecommendation < ApplicationRecord
   belongs_to :voting_session
   belongs_to :recommendation
+  has_one :book, through: :recommendation
   has_many :votes
 
   def approve_recommendation

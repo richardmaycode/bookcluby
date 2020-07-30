@@ -1,5 +1,5 @@
-module Recommendation
-  class VotingSessionImport
+module Recommendations
+  class VotingSessionImport < ApplicationService
     def initialize(voting_session)
       @voting_session = voting_session
       @group = voting_session.group
@@ -13,7 +13,7 @@ module Recommendation
 
     def add_recommendations_to_session(recommendations)
       recommendations.each do |r|
-        VotingSessionRecommendations.create(voting_session_id: @voting_session.id, recommendation_id: r.id)
+        VotingSessionRecommendation.create(voting_session_id: @voting_session.id, recommendation_id: r.id)
       end
     end
   end

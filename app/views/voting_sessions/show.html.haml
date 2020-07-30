@@ -1,8 +1,12 @@
+=render(NavigationComponent.new(title: 'BookCluby', left_link: link_to(@group.name, @group, class: 'navbar__back-button')))
 .container
   .header
     %h1 Voting Session for #{@voting_session.group.name}
 .container
   -if @voting_session.recommendations.any?
-    %ul
-      -@voting_session.recommendations.each do |r|
-        %li= r.book.name
+    .recommendations_section
+    -@voting_session.voting_session_recommendations.each do |r|
+      .recommendations_row
+        %h2.title= r.recommendation.book.title
+        .autor= r.recommendation.book.author
+        =link_to 'Vote', new_vote_path(r, voting_session: @voting_session)

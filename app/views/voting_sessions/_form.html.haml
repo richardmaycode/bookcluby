@@ -1,5 +1,6 @@
 =form_with(model: @voting_session, url: [@group, @voting_session], class: 'form') do |f|
   =f.hidden_field :status, value: VotingSession.statuses.keys.first
+  =f.hidden_field :import, value: true
   .form-element
     =f.label :maximum_books_per_person, 'Books Per Person'
     =f.number_field :maximum_books_per_person, class: 'form-input'
@@ -14,10 +15,10 @@
     =f.date_field :voting_date
   .form-element
     =f.label 'How do you want to handle existing recommendations'
-  .form-element
-    =f.radio_button(:import, true)
-    =f.label(:import_true, 'Add All' )
-    =f.radio_button(:import, false)
-    =f.label(:import_false, 'Select Manually')
+  -# .form-element
+  -#   =f.radio_button(:import, true)
+  -#   =f.label(:import_true, 'Add All' )
+  -#   =f.radio_button(:import, false)
+  -#   =f.label(:import_false, 'Select Manually')
   .form-element
     =f.submit

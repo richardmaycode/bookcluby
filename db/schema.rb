@@ -85,11 +85,13 @@ ActiveRecord::Schema.define(version: 2020_07_06_193557) do
   end
 
   create_table "votes", force: :cascade do |t|
+    t.boolean "outcome"
     t.bigint "voting_session_id", null: false
     t.bigint "voting_session_recommendation_id", null: false
-    t.boolean "outcome"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_votes_on_user_id"
     t.index ["voting_session_id"], name: "index_votes_on_voting_session_id"
     t.index ["voting_session_recommendation_id"], name: "index_votes_on_voting_session_recommendation_id"
   end
@@ -127,6 +129,7 @@ ActiveRecord::Schema.define(version: 2020_07_06_193557) do
   add_foreign_key "recommendations", "books"
   add_foreign_key "recommendations", "groups"
   add_foreign_key "recommendations", "users"
+  add_foreign_key "votes", "users"
   add_foreign_key "votes", "voting_session_recommendations"
   add_foreign_key "votes", "voting_sessions"
   add_foreign_key "voting_sessions", "groups"
